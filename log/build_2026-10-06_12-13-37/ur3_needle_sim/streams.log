@@ -1,0 +1,8 @@
+[0.356s] Invoking command in '/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build --no-deps symlink_data --force
+[0.462s] usage: setup.py [global_opts] cmd1 [cmd1_opts] [cmd2 [cmd2_opts] ...]
+[0.462s]    or: setup.py --help [cmd1 cmd2 ...]
+[0.462s]    or: setup.py --help-commands
+[0.462s]    or: setup.py cmd --help
+[0.462s] 
+[0.462s] error: option --editable not recognized
+[0.476s] Invoked command in '/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim' returned '1': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build --no-deps symlink_data --force

@@ -1,7 +1,4 @@
 # ROS 2 / colcon
-build/
-install/
-log/
 *.pyc
 __pycache__/
 .pytest_cache/
@@ -20,3 +17,7 @@ __pycache__/
 # Large / local
 *.bag
 *.log
+
+# colcon event logs embed full shell env (blocked by GitHub secret scanning)
+log/**/events.log
+log/**/logger_all.log

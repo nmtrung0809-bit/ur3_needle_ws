@@ -1,0 +1,39 @@
+[0.338s] Invoking command in '/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/src/ur3_needle_sim': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ur3_needle_sim build --build-base /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build install --record /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/install.log --single-version-externally-managed install_data
+[0.474s] running egg_info
+[0.482s] writing ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/PKG-INFO
+[0.483s] writing dependency_links to ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/dependency_links.txt
+[0.483s] writing entry points to ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/entry_points.txt
+[0.483s] writing requirements to ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/requires.txt
+[0.483s] writing top-level names to ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/top_level.txt
+[0.501s] reading manifest file '../../build/ur3_needle_sim/ur3_needle_sim.egg-info/SOURCES.txt'
+[0.501s] writing manifest file '../../build/ur3_needle_sim/ur3_needle_sim.egg-info/SOURCES.txt'
+[0.502s] running build
+[0.502s] running build_py
+[0.502s] copying ur3_needle_sim/needle_insert_node.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build/lib/ur3_needle_sim
+[0.502s] copying ur3_needle_sim/hole_poses_loader.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build/lib/ur3_needle_sim
+[0.502s] copying ur3_needle_sim/ur3_ik.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build/lib/ur3_needle_sim
+[0.502s] copying ur3_needle_sim/__init__.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build/lib/ur3_needle_sim
+[0.502s] copying ur3_needle_sim/depth_monitor.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build/lib/ur3_needle_sim
+[0.502s] running install
+[0.505s] running install_lib
+[0.514s] running install_data
+[0.514s] copying resource/ur3_needle_sim -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ament_index/resource_index/packages
+[0.514s] copying package.xml -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim
+[0.514s] copying launch/demo.launch.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/launch
+[0.514s] copying launch/sim.launch.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/launch
+[0.514s] copying worlds/ur3_needle_ros.wbt -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/worlds
+[0.514s] copying worlds/ur3_needle_click.wbt -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/worlds
+[0.514s] copying worlds/ur3_needle.wbt -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/worlds
+[0.514s] copying config/hole_poses.yaml -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/config
+[0.514s] copying config/needle_params.yaml -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/config
+[0.515s] copying config/holes.yaml -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/config
+[0.515s] copying resource/ros2_control_config.yaml -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/resource
+[0.515s] copying resource/ur3e_needle.urdf -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/resource
+[0.515s] running install_egg_info
+[0.523s] removing '/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/python3.12/site-packages/ur3_needle_sim-0.0.0-py3.12.egg-info' (and everything under it)
+[0.524s] Copying ../../build/ur3_needle_sim/ur3_needle_sim.egg-info to /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/python3.12/site-packages/ur3_needle_sim-0.0.0-py3.12.egg-info
+[0.524s] running install_scripts
+[0.542s] Installing depth_monitor script to /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/ur3_needle_sim
+[0.542s] Installing needle_insert_node script to /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/ur3_needle_sim
+[0.542s] writing list of installed files to '/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/install.log'
+[0.561s] Invoked command in '/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/src/ur3_needle_sim' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ur3_needle_sim build --build-base /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build install --record /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/install.log --single-version-externally-managed install_data

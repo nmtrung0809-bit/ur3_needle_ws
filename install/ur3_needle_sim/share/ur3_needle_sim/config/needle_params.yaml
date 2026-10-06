@@ -1,0 +1,18 @@
+/**:
+  ros__parameters:
+    insertion:
+      # Match click INSERT_DEPTH=-0.04 (tip above mouth); joints come from hole_poses.yaml
+      depth_m: 0.02
+      hold_sec: 1.5
+      click_max_distance_m: 0.025
+    poses:
+      # Home matches click poses.HOME; approach/insert per hole from click IK bake
+      home: [0.0, -1.570, 1.570, -1.570, -1.570, 0.0]
+      approach_center: [0.0, -1.210, 1.370, -1.770, -1.590, 0.0]
+      insert_center: [0.0, -1.010, 1.590, -2.170, -1.553, -0.020]
+    trajectory:
+      home_sec: 3.0
+      approach_sec: 4.0
+      insert_sec: 3.0
+      retract_sec: 3.0
+    action_name: /ur3/ur_joint_trajectory_controller/follow_joint_trajectory

@@ -1,0 +1,24 @@
+running egg_info
+writing ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/PKG-INFO
+writing dependency_links to ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/dependency_links.txt
+writing entry points to ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/entry_points.txt
+writing requirements to ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/requires.txt
+writing top-level names to ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/top_level.txt
+reading manifest file '../../build/ur3_needle_sim/ur3_needle_sim.egg-info/SOURCES.txt'
+writing manifest file '../../build/ur3_needle_sim/ur3_needle_sim.egg-info/SOURCES.txt'
+running build
+running build_py
+copying ur3_needle_sim/__init__.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build/lib/ur3_needle_sim
+running install
+running install_lib
+running install_data
+copying resource/ur3_needle_sim -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ament_index/resource_index/packages
+copying package.xml -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim
+copying worlds/ur3_needle.wbt -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/worlds
+running install_egg_info
+removing '/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/python3.12/site-packages/ur3_needle_sim-0.0.0-py3.12.egg-info' (and everything under it)
+Copying ../../build/ur3_needle_sim/ur3_needle_sim.egg-info to /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/python3.12/site-packages/ur3_needle_sim-0.0.0-py3.12.egg-info
+running install_scripts
+Installing depth_monitor script to /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/ur3_needle_sim
+Installing needle_insert_node script to /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/ur3_needle_sim
+writing list of installed files to '/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/install.log'

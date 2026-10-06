@@ -1,0 +1,41 @@
+running egg_info
+writing ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/PKG-INFO
+writing dependency_links to ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/dependency_links.txt
+writing entry points to ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/entry_points.txt
+writing requirements to ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/requires.txt
+writing top-level names to ../../build/ur3_needle_sim/ur3_needle_sim.egg-info/top_level.txt
+reading manifest file '../../build/ur3_needle_sim/ur3_needle_sim.egg-info/SOURCES.txt'
+writing manifest file '../../build/ur3_needle_sim/ur3_needle_sim.egg-info/SOURCES.txt'
+running build
+running build_py
+copying ur3_needle_sim/needle_insert_node.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build/lib/ur3_needle_sim
+copying ur3_needle_sim/hole_poses_loader.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build/lib/ur3_needle_sim
+copying ur3_needle_sim/ur3_ik.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build/lib/ur3_needle_sim
+copying ur3_needle_sim/__init__.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build/lib/ur3_needle_sim
+copying ur3_needle_sim/depth_monitor.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build/lib/ur3_needle_sim
+running install
+running install_lib
+copying /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build/lib/ur3_needle_sim/needle_insert_node.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/python3.12/site-packages/ur3_needle_sim
+copying /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/build/lib/ur3_needle_sim/hole_poses_loader.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/python3.12/site-packages/ur3_needle_sim
+byte-compiling /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/python3.12/site-packages/ur3_needle_sim/needle_insert_node.py to needle_insert_node.cpython-312.pyc
+byte-compiling /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/python3.12/site-packages/ur3_needle_sim/hole_poses_loader.py to hole_poses_loader.cpython-312.pyc
+running install_data
+copying resource/ur3_needle_sim -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ament_index/resource_index/packages
+copying package.xml -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim
+copying launch/demo.launch.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/launch
+copying launch/sim.launch.py -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/launch
+copying worlds/ur3_needle_ros.wbt -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/worlds
+copying worlds/ur3_needle_click.wbt -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/worlds
+copying worlds/ur3_needle.wbt -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/worlds
+copying config/hole_poses.yaml -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/config
+copying config/needle_params.yaml -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/config
+copying config/holes.yaml -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/config
+copying resource/ros2_control_config.yaml -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/resource
+copying resource/ur3e_needle.urdf -> /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/share/ur3_needle_sim/resource
+running install_egg_info
+removing '/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/python3.12/site-packages/ur3_needle_sim-0.0.0-py3.12.egg-info' (and everything under it)
+Copying ../../build/ur3_needle_sim/ur3_needle_sim.egg-info to /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/python3.12/site-packages/ur3_needle_sim-0.0.0-py3.12.egg-info
+running install_scripts
+Installing depth_monitor script to /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/ur3_needle_sim
+Installing needle_insert_node script to /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/ur3_needle_sim/lib/ur3_needle_sim
+writing list of installed files to '/workspace/share/ros2-workspace/trung_test/ur3_needle_ws/build/ur3_needle_sim/install.log'

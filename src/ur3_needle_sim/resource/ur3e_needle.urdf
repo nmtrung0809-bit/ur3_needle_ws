@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!-- Minimal UR3e + needle_tip for webots_ros2_control (joint names must match Webots). -->
+<robot name="UR3e">
+  <webots>
+    <plugin type="webots_ros2_control::Ros2Control"/>
+  </webots>
+
+  <link name="base_link"/>
+  <link name="base_link_inertia"/>
+  <link name="shoulder_link"/>
+  <link name="upper_arm_link"/>
+  <link name="forearm_link"/>
+  <link name="wrist_1_link"/>
+  <link name="wrist_2_link"/>
+  <link name="wrist_3_link"/>
+  <link name="tool0"/>
+  <link name="needle_tip"/>
+
+  <joint name="base_link-base_link_inertia" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_link_inertia"/>
+    <origin xyz="0 0 0" rpy="0 0 3.141592653589793"/>
+  </joint>
+
+  <joint name="shoulder_pan_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="shoulder_link"/>
+    <origin xyz="0 0 0.15185" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-6.28318530718" upper="6.28318530718" effort="150" velocity="3.14"/>
+  </joint>
+
+  <joint name="shoulder_lift_joint" type="revolute">
+    <parent link="shoulder_link"/>
+    <child link="upper_arm_link"/>
+    <origin xyz="0 0 0" rpy="1.57079632679 -1.57079632679 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-6.28318530718" upper="6.28318530718" effort="150" velocity="3.14"/>
+  </joint>
+
+  <joint name="elbow_joint" type="revolute">
+    <parent link="upper_arm_link"/>
+    <child link="forearm_link"/>
+    <origin xyz="0 -0.24355 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14159265359" upper="3.14159265359" effort="150" velocity="3.14"/>
+  </joint>
+
+  <joint name="wrist_1_joint" type="revolute">
+    <parent link="forearm_link"/>
+    <child link="wrist_1_link"/>
+    <origin xyz="0 -0.2132 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-6.28318530718" upper="6.28318530718" effort="28" velocity="3.14"/>
+  </joint>
+
+  <joint name="wrist_2_joint" type="revolute">
+    <parent link="wrist_1_link"/>
+    <child link="wrist_2_link"/>
+    <origin xyz="0 0 0.08535" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-6.28318530718" upper="6.28318530718" effort="28" velocity="3.14"/>
+  </joint>
+
+  <joint name="wrist_3_joint" type="revolute">
+    <parent link="wrist_2_link"/>
+    <child link="wrist_3_link"/>
+    <origin xyz="0 0.08535 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-6.28318530718" upper="6.28318530718" effort="28" velocity="3.14"/>
+  </joint>
+
+  <joint name="wrist_3_link-tool0" type="fixed">
+    <parent link="wrist_3_link"/>
+    <child link="tool0"/>
+    <origin xyz="0 0.0819 0" rpy="-1.57079632679 0 0"/>
+  </joint>
+
+  <!-- Tip roughly along tool -Z toward phantom (matches world needle layout). -->
+  <joint name="tool0_to_needle_tip" type="fixed">
+    <parent link="tool0"/>
+    <child link="needle_tip"/>
+    <origin xyz="0 0 0.18" rpy="0 0 0"/>
+  </joint>
+
+  <ros2_control name="WebotsControl" type="system">
+    <hardware>
+      <plugin>webots_ros2_control::Ros2ControlSystem</plugin>
+    </hardware>
+    <joint name="shoulder_pan_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="shoulder_lift_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="elbow_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="wrist_1_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="wrist_2_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="wrist_3_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+</robot>

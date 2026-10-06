@@ -1,0 +1,233 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Parquetry.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/solids/protos/SolidBox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/GalvanizedMetal.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/universal_robots/protos/UR3e.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/devices/robotiq/protos/Robotiq2f85Gripper.proto"
+
+WorldInfo {
+  info [
+    "UR3e needle insertion on phantom (9 holes). Mouths: x in {0.26,0.36,0.46}, y in {-0.10,0,0.10}, z=0.55."
+  ]
+  title "UR3 Needle Insertion"
+  basicTimeStep 8
+  physicsDisableAngularThreshold 0.1
+  contactProperties [
+    ContactProperties {
+      bounce 0.1
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.3137578916037001 0.4399936628558852 0.841404517519999 1.598361755266784
+  position 0.49192033071712793 -1.6365571198816662 2.1315986819426445
+  exposure 1.7
+  follow "UR3e"
+}
+TexturedBackground {
+  texture "factory"
+}
+Floor {
+  size 8 8
+  appearance Parquetry {
+    type "light strip"
+    colorOverride 0.6 1 0.8
+  }
+}
+SolidBox {
+  translation 0 0 0.3
+  size 0.5 0.5 0.6
+  appearance GalvanizedMetal {
+    colorOverride 0.7 1 1
+  }
+}
+SolidBox {
+  translation 0.36 0 0.225
+  name "phantom_table"
+  size 0.5 0.5 0.45
+  appearance GalvanizedMetal {
+    colorOverride 0.7 1 1
+  }
+}
+DEF PHANTOM Solid {
+  translation 0.42 0 0.5
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.85 0.55 0.55
+        transparency 0.45
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.45 0.45 0.1
+      }
+    }
+    DEF HOLE_0 Pose {
+      translation -0.1 -0.1 0.01
+      children [
+        DEF HOLE_SHAPE Shape {
+          appearance PBRAppearance {
+            baseColor 0.05 0.05 0.05
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.012
+          }
+        }
+      ]
+    }
+    DEF HOLE_1 Pose {
+      translation 0 -0.1 0.01
+      children [
+        USE HOLE_SHAPE
+      ]
+    }
+    DEF HOLE_2 Pose {
+      translation 0.1 -0.1 0.01
+      children [
+        USE HOLE_SHAPE
+      ]
+    }
+    DEF HOLE_3 Pose {
+      translation -0.1 0 0.01
+      children [
+        USE HOLE_SHAPE
+      ]
+    }
+    DEF HOLE_4 Pose {
+      translation 0 0 0.01
+      children [
+        USE HOLE_SHAPE
+      ]
+    }
+    DEF HOLE_5 Pose {
+      translation 0.1 0 0.01
+      children [
+        USE HOLE_SHAPE
+      ]
+    }
+    DEF HOLE_6 Pose {
+      translation -0.1 0.1 0.01
+      children [
+        USE HOLE_SHAPE
+      ]
+    }
+    DEF HOLE_7 Pose {
+      translation 0 0.1 0.01
+      children [
+        USE HOLE_SHAPE
+      ]
+    }
+    DEF HOLE_8 Pose {
+      translation 0.1 0.1 0.01
+      children [
+        USE HOLE_SHAPE
+      ]
+    }
+  ]
+  name "phantom"
+  boundingObject Box {
+    size 0.45 0.45 0.1
+  }
+}
+UR3e {
+  hidden position_0_0 1.5520962061822094e-09
+  hidden position_1_0 -1.5699924479777994
+  hidden linearVelocity_1 2.334335829331296e-08 -8.223717093748503e-10 -3.494445996451121e-08
+  hidden angularVelocity_1 -3.025337742685916e-09 1.452282162194033e-08 -1.8443816636817863e-08
+  hidden rotation_2 0 1 0 0.000803552022053113
+  hidden position_2_0 1.570007509782099
+  hidden linearVelocity_2 -8.743807307291845e-07 -1.4311798386726391e-09 -6.969837620842247e-08
+  hidden angularVelocity_2 -1.8017871024828283e-09 -7.5689294623785145e-06 -1.7657756905257797e-08
+  hidden rotation_3 0 0.9999999999999999 0 1.570007509782099
+  hidden position_3_0 -1.569999849834971
+  hidden linearVelocity_3 -1.78430855518458e-06 -4.000339855619888e-09 1.5418517298498368e-06
+  hidden angularVelocity_3 -4.1102778682058864e-09 -1.545950512665768e-05 -1.8278404535007532e-08
+  hidden rotation_4 0 1 0 0.0007961501638913372
+  hidden position_4_0 -1.5699996250335524
+  hidden linearVelocity_4 -1.7763031732367747e-06 -6.796693347822794e-09 3.1586371103007355e-06
+  hidden angularVelocity_4 -6.490858671501881e-09 -2.335746602982915e-05 -1.8713549706097593e-08
+  hidden rotation_5 0 0 -1 1.5699996250335526
+  hidden position_5_0 6.36835609515183e-13
+  hidden linearVelocity_5 -1.7706708694556372e-06 -7.654534380894495e-09 3.13593834092137e-06
+  hidden angularVelocity_5 3.7587061580241305e-06 -2.335584905817991e-05 -2.1861454342600513e-08
+  hidden linearVelocity_6 -2.783032169527062e-07 2.298319586515839e-07 5.105154052128622e-06
+  hidden angularVelocity_6 3.7585897644305435e-06 -2.335557309425207e-05 -2.184543448268585e-08
+  hidden position_9_0 0.7500000060246331
+  hidden position_9_1 0.7503032201294592
+  hidden position_9_2 0.750000006069671
+  hidden position_9_3 0.7503032877022813
+  hidden rotation_10 6.344027174396372e-08 0.36627253188903025 0.9305076208089837 3.1415929759271304
+  hidden linearVelocity_10 1.8726785867772539e-06 5.749690613910835e-07 6.177168195712539e-06
+  hidden angularVelocity_10 3.7585878458690454e-06 -2.3355494471337352e-05 -2.1846272171878056e-08
+  hidden position_11_0 -0.7207613245732815
+  hidden rotation_12 -1 0 0 0.7207613245732816
+  hidden linearVelocity_12 3.3179846170807966e-06 8.083781719778898e-07 5.5066089530761e-06
+  hidden angularVelocity_12 3.7585871961144465e-06 -2.3289358399146813e-05 -2.1793597427690556e-08
+  hidden rotation_14 6.346470525698211e-08 0.3664135991967968 0.9304520806165384 3.1415929759078907
+  hidden position_14_0 -0.7210645386831154
+  hidden linearVelocity_14 1.7673443421306583e-06 5.587123701192303e-07 5.400138490737521e-06
+  hidden angularVelocity_14 3.7585875008580485e-06 -2.3338342731064824e-05 -2.183204717191761e-08
+  hidden rotation_15 1 0 0 0.7500000060696708
+  hidden linearVelocity_15 1.8709011159508564e-06 5.766950944883162e-07 4.028655752446122e-06
+  hidden angularVelocity_15 3.758587846816742e-06 -2.3355616152662145e-05 -2.1844573074252874e-08
+  hidden position_16_0 -0.7207611292816629
+  hidden rotation_17 -1 0 0 0.7207611292816631
+  hidden linearVelocity_17 3.317810437991153e-06 8.090283410452858e-07 4.697376405744364e-06
+  hidden angularVelocity_17 3.758587301542524e-06 -2.33217552709795e-05 -2.181798582564861e-08
+  hidden rotation_19 1 0 0 0.7503032877022812
+  hidden position_19_0 -0.7210644109187859
+  hidden linearVelocity_19 1.7668729991265408e-06 5.591892447094525e-07 4.80656869715159e-06
+  hidden angularVelocity_19 3.758587509991127e-06 -2.3341035235253516e-05 -2.1833633024359583e-08
+  translation 0 0 0.6
+  controller "ur3_click_insert"
+  supervisor TRUE
+  selfCollision FALSE
+  toolSlot [
+    DEF TCP Solid {
+      name "tcp"
+    }
+    DEF CAMERA_NODE Camera {
+      translation 0.01 0.1 0.02
+      rotation 0 0 1 1.5708003061004252
+      fieldOfView 2.2
+      width 640
+      height 480
+      far 2
+      recognition Recognition {
+      }
+    }
+    Robotiq2f85Gripper {
+      rotation 1 0 0 -1.5708
+      name "gripper"
+    }
+    DEF NEEDLE Solid {
+      translation 0 0.15 0.09
+      children [
+        Pose {
+          translation 0 0 -0.09
+          rotation 1 0 0 1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.75 0.75 0.85
+                roughness 0.3
+              }
+              geometry Cylinder {
+                height 0.18
+                radius 0.002
+              }
+            }
+          ]
+        }
+      ]
+      name "needle"
+    }
+  ]
+}

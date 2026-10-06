@@ -1,0 +1,22 @@
+# ROS 2 / colcon
+build/
+install/
+log/
+*.pyc
+__pycache__/
+.pytest_cache/
+
+# Webots
+*.wbproj
+.supervisor.jpg
+*.cache
+
+# Editor / OS
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Large / local
+*.bag
+*.log

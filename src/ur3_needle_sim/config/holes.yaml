@@ -1,0 +1,23 @@
+# 9 lỗ trên phantom — tọa độ WORLD (mét)
+# Phantom tâm (0.36, 0, 0.50), mặt trên z ≈ 0.55
+# Lưới 3×3 bước 0.10 m (local ±0.10) — trong tầm UR3e (~0.5 m)
+# mouth = target point tip/pan dùng khi click
+
+phantom:
+  center: [0.36, 0.0, 0.50]
+  top_z: 0.55
+
+holes:
+  # id | world (x, y, z) mouth center
+  - {id: 0, x: 0.26, y: -0.10, z: 0.55}
+  - {id: 1, x: 0.36, y: -0.10, z: 0.55}
+  - {id: 2, x: 0.46, y: -0.10, z: 0.55}
+  - {id: 3, x: 0.26, y:  0.00, z: 0.55}
+  - {id: 4, x: 0.36, y:  0.00, z: 0.55}   # giữa
+  - {id: 5, x: 0.46, y:  0.00, z: 0.55}
+  - {id: 6, x: 0.26, y:  0.10, z: 0.55}
+  - {id: 7, x: 0.36, y:  0.10, z: 0.55}
+  - {id: 8, x: 0.46, y:  0.10, z: 0.55}
+
+click:
+  max_distance_m: 0.03

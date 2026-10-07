@@ -7,7 +7,215 @@
 
 > **Cập nhật mới nhất (đồng bộ code):**  
 > - **Click:** `ur3_click_insert` = clone_backup IK TEST (flange DH, không camera / tip IK) + **straight-Z** insert. World: `worlds/ur3_needle.wbt`.  
-> - **ROS 2:** oldest package `ur3_needle.wbt` (`<extern>`) + baked `z_path`. Xem mục **「Giải thích code dự án hiện tại」** và **「ROS 2 — cách chạy…」**.
+> - **ROS 2:** oldest package `ur3_needle.wbt` (`<extern>`) + baked `z_path`. Xem mục **「Giải thích code dự án hiện tại」** và **「ROS 2 — cách chạy…」**.  
+> - **Repo:** https://github.com/nmtrung0809-bit/ur3_needle_ws (branch `main`). File này nằm ở root repo + bản copy tại `trung_test/KE_HOACH_UR3_SAU_KIM_5_NGAY.md`.
+
+---
+
+## Workflow / How-to — làm dự án hiện tại (bắt đầu từ đây)
+
+Root workspace:
+
+```text
+/workspace/share/ros2-workspace/trung_test/ur3_needle_ws
+```
+
+GitHub: `https://github.com/nmtrung0809-bit/ur3_needle_ws` · branch `main`
+
+Có **hai chế độ** — **không** mở cùng lúc một instance Webots:
+
+| Chế độ | World | Controller | Cách chạy |
+|--------|-------|------------|-----------|
+| **Click** (chính) | `ur3_needle_ws/worlds/ur3_needle.wbt` | `ur3_click_insert` | `./run_click_demo.sh` hoặc `webots worlds/ur3_needle.wbt` |
+| **ROS 2** | package `src/.../worlds/ur3_needle.wbt` → install share | `<extern>` | `./run_ros_demo.sh` rồi pub `/needle/*` |
+
+### 0) Clone / mở sẵn project
+
+```bash
+cd /workspace/share/ros2-workspace/trung_test
+# nếu chưa có:
+# git clone https://github.com/nmtrung0809-bit/ur3_needle_ws.git
+cd ur3_needle_ws
+```
+
+Yêu cầu máy: ROS 2 **Jazzy**, Webots (`WEBOTS_HOME=/usr/local/webots`), Python hệ thống **3.12** (tránh conda 3.13 trước `ros2`).
+
+### 1) Demo Click (Webots + chuột)
+
+```bash
+cd /workspace/share/ros2-workspace/trung_test/ur3_needle_ws
+./run_click_demo.sh
+# hoặc: webots worlds/ur3_needle.wbt
+```
+
+1. Bấm **Play** trong Webots.  
+2. **Click trái nhanh** gần chấm đen (miệng lỗ) trên phantom hồng.  
+3. Arm: `HOME → ABOVE → DOWN (thẳng Z) → Retract → HOME`.  
+4. Khi xong → click lỗ khác.
+
+**Pipeline code:** Mouse 3D → nearest `DEF HOLE_i` → `world_point_to_base` → `make_pick_targets_from_mouth_base` → `inverse_kinematics_downward` (seed `SEED_DOWN` + pan) → `goto_straight_z`.
+
+| Lỗi | Xử lý |
+|-----|--------|
+| Click không nhận / NaN | Phải **Play**; click trên mặt phantom; click nhanh (không kéo xoay view) |
+| `too far from holes` | Gần chấm đen hơn (ngưỡng ~3 cm) |
+| Tip lệch / phantom lệch | Phantom phải `(0.36, 0, 0.5)` — Webots hay drift ~0.42; reload world, đừng save bản drift |
+| IK fail | Kiểm `INSERT_DEPTH`, `FLANGE_TO_NEEDLE_TIP`, `BASE_*_SIGN` trong `motion.py` |
+
+### 2) Build ROS 2 package
+
+```bash
+cd /workspace/share/ros2-workspace/trung_test/ur3_needle_ws
+export PATH="/usr/bin:/bin:${PATH}"
+hash -r
+source /opt/ros/jazzy/setup.bash
+export WEBOTS_HOME=/usr/local/webots
+# nếu package lỗi lạ: rm -rf build/ur3_needle_sim install/ur3_needle_sim
+colcon build --packages-select ur3_needle_sim
+source install/setup.bash
+```
+
+**Không** dùng `colcon build --symlink-install` với package này (setuptools editable lỗi trên host này).
+
+### 3) Demo ROS 2 (2 terminal)
+
+**Đóng** Webots click trước. World ROS = bản `<extern>` trong package/install — **không** gắn `ur3_click_insert`.
+
+**Terminal 1** (giữ mở):
+
+```bash
+cd /workspace/share/ros2-workspace/trung_test/ur3_needle_ws
+./run_ros_demo.sh
+```
+
+Đợi controllers active / Webots mở.
+
+**Terminal 2:**
+
+```bash
+source /opt/ros/jazzy/setup.bash
+source /workspace/share/ros2-workspace/trung_test/ur3_needle_ws/install/setup.bash
+
+ros2 topic info /needle/start
+# Subscription count: 1
+
+ros2 control list_controllers -c /ur3/controller_manager
+ros2 topic hz /ur3/joint_states
+
+# chọn lỗ rồi start (ví dụ lỗ 8)
+ros2 topic pub --once /needle/hole_id std_msgs/msg/Int32 "{data: 8}"
+ros2 topic pub --once /needle/start std_msgs/msg/Bool "{data: true}"
+ros2 topic echo /needle/phase
+# idle → move_home → move_approach → insert → hold → retract → move_home → done
+
+ros2 topic pub --once /needle/abort std_msgs/msg/Bool "{data: true}"   # hủy
+```
+
+Chi tiết topic / action: mục **「ROS 2 — cách chạy, đổi lỗ, điều khiển」** bên dưới.
+
+### 4) Đổi độ sâu insert / bake lại ROS cho khớp click
+
+1. Sửa `INSERT_DEPTH` (và nếu cần `FLANGE_TO_NEEDLE_TIP`, `BASE_X_SIGN`, `BASE_Y_SIGN`) trong:
+
+```text
+controllers/ur3_click_insert/motion.py
+```
+
+2. Mirror controller sang package:
+
+```bash
+cd /workspace/share/ros2-workspace/trung_test/ur3_needle_ws
+cp controllers/ur3_click_insert/motion.py \
+   src/ur3_needle_sim/controllers/ur3_click_insert/motion.py
+cp controllers/ur3_click_insert/poses.py \
+   src/ur3_needle_sim/controllers/ur3_click_insert/poses.py
+cp controllers/ur3_click_insert/holes.py \
+   src/ur3_needle_sim/controllers/ur3_click_insert/holes.py
+cp controllers/ur3_click_insert/ur3_click_insert.py \
+   src/ur3_needle_sim/controllers/ur3_click_insert/ur3_click_insert.py
+```
+
+3. Bake `hole_poses.yaml` (+ `z_path` thẳng Z):
+
+```bash
+/usr/bin/python3 scripts/bake_hole_poses_from_click_ik.py
+# output: src/ur3_needle_sim/config/hole_poses.yaml
+#         + controllers/ur3_click_insert/hole_poses.yaml
+```
+
+4. Build lại + chạy ROS:
+
+```bash
+colcon build --packages-select ur3_needle_sim
+./run_ros_demo.sh
+```
+
+Click: reload `worlds/ur3_needle.wbt` sau khi sửa `controllers/`.
+
+### 5) Đồng bộ world / phantom
+
+| Bản | Path | Controller |
+|-----|------|------------|
+| Click runtime | `worlds/ur3_needle.wbt` | `ur3_click_insert` |
+| Click mirror | `src/ur3_needle_sim/worlds/ur3_needle_click.wbt` | `ur3_click_insert` |
+| ROS | `src/ur3_needle_sim/worlds/ur3_needle.wbt` (+ `ur3_needle_ros.wbt`) | `<extern>` |
+
+Phantom Solid translation **luôn** `(0.36, 0, 0.5)` trên mọi `.wbt`. Lưới miệng: x∈{0.26,0.36,0.46}, y∈{−0.10,0,0.10}, z≈0.55.
+
+### 6) Cấu trúc thư mục cần nhớ
+
+```text
+ur3_needle_ws/
+  KE_HOACH_UR3_SAU_KIM_5_NGAY.md   # file này
+  README.md
+  run_click_demo.sh
+  run_ros_demo.sh
+  worlds/ur3_needle.wbt            # click
+  controllers/ur3_click_insert/    # motion, poses, holes, FSM click
+  scripts/bake_hole_poses_from_click_ik.py
+  src/ur3_needle_sim/              # ROS package
+    config/{holes,hole_poses,needle_params}.yaml
+    launch/{sim,demo}.launch.py
+    ur3_needle_sim/{needle_insert_node,depth_monitor,ur3_ik}.py
+    worlds/{ur3_needle,ur3_needle_click,ur3_needle_ros}.wbt
+  build/  install/  log/           # colcon artifacts (đã có trên GitHub; events.log/logger_all.log gitignore)
+```
+
+### 7) Push lên GitHub (`ur3_needle_ws`)
+
+```bash
+cd /workspace/share/ros2-workspace/trung_test/ur3_needle_ws
+git status
+git add -A
+# KHÔNG add log/**/events.log hay logger_all.log (env đầy đủ → GitHub secret scanning chặn)
+git commit -m "Update KE_HOACH workflow and how-to"
+git push origin main
+```
+
+`.gitignore` đã loại `log/**/events.log` và `log/**/logger_all.log`. Remote sạch: `https://github.com/nmtrung0809-bit/ur3_needle_ws.git`.
+
+Bản copy ngoài repo (cùng nội dung how-to):
+
+```text
+/workspace/share/ros2-workspace/trung_test/KE_HOACH_UR3_SAU_KIM_5_NGAY.md
+```
+
+Giữ hai file này **đồng bộ** khi sửa workflow.
+
+### 8) Quy trình làm việc hàng ngày (tóm tắt)
+
+```text
+1. Sửa code click  →  controllers/ur3_click_insert/*
+2. Mirror          →  src/ur3_needle_sim/controllers/...
+3. Test click      →  ./run_click_demo.sh  (Play → click lỗ)
+4. Nếu đổi IK/depth →  bake script → colcon build
+5. Test ROS        →  đóng click Webots → ./run_ros_demo.sh → pub hole_id + start
+6. Commit + push   →  git add/commit/push (tránh events.log)
+```
+
+Hằng số đang dùng: `INSERT_DEPTH=+0.02`, `ABOVE_CLEARANCE=0.16`, `FLANGE_TO_NEEDLE_TIP≈0.20`, `BASE_X_SIGN=BASE_Y_SIGN=-1`, `HOME=[0,-π/2,π/2,-π/2,-π/2,0]`.
+
+Đọc sâu code: mục **「Giải thích code dự án hiện tại」**. Tutorial gõ từ đầu: **Ngày 1–5** phía dưới (một số đoạn cũ hơn code hiện tại).
 
 ---
 
@@ -2540,7 +2748,8 @@ source install/setup.bash
 
 **Trạng thái:** checklist Ngày 1–5 và Definition of Done đã **xong** (gồm ROS 2 verified).  
 Phần tutorial Ngày 1–5 phía dưới vẫn giữ để ôn / làm lại từ đầu (một số đoạn cũ hơn code hiện tại).  
-**Code đang chạy hôm nay:** đọc **「Giải thích code dự án hiện tại」** + **「ROS 2 — cách chạy, đổi lỗ, điều khiển」** ở đầu file.
+**Làm / chạy dự án hôm nay:** đọc **「Workflow / How-to」** ở đầu file trước.  
+**Code đang chạy:** **「Giải thích code dự án hiện tại」** + **「ROS 2 — cách chạy, đổi lỗ, điều khiển」**.
 
 **Chạy demo click:**
 
